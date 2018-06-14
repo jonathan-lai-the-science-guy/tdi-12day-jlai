@@ -32,16 +32,29 @@
 		Enter stock symbol: {{ form.stockSymbol }}</br>
 		<font color="red">{{ status }}</font></br>		
 		Closing price
+		{% if oClose %}
 		<input type="checkbox" name="plotOptions" value="close" checked></br>
-
+		{% else %}
+		<input type="checkbox" name="plotOptions" value="close"></br>
+		{% endif %}
 		Adjusted closing price
+		{% if oAdjClose %}
+		<input type="checkbox" name="plotOptions" value="adj_close" checked></br>
+		{% else %}
 		<input type="checkbox" name="plotOptions" value="adj_close"></br>
-
+		{% endif %}
 		Opening price
+		{% if oOpen %}
+		<input type="checkbox" name="plotOptions" value="open" checked></br>
+		{% else %}
 		<input type="checkbox" name="plotOptions" value="open"></br>
-
+		{% endif %}
 		Adjusted opening price
+		{% if oAdjOpen %}
+		<input type="checkbox" name="plotOptions" value="adj_open" checked></br>
+		{% else %}
 		<input type="checkbox" name="plotOptions" value="adj_open"></br>
+		{% endif %}
 
 	    </br><input type="submit" value="Submit">
 	    </form></br>

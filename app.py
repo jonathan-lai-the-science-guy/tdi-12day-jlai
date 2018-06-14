@@ -12,8 +12,6 @@ from bokeh.embed import components
 from bokeh.resources import CDN
 from bokeh.util.string import encode_utf8
 
-sys.path.append("/tmp/")
-
 today = pd.to_datetime(str(date.today()))
 ago = today - pd.DateOffset(months=3)
 ago = str(ago.to_period('D'))
@@ -55,7 +53,14 @@ class InputForm(Form):
     stockSymbol = FloatField(validators=[validators.InputRequired()])
 
 figdata = None
-quandl.ApiConfig.api_key = 'zuycN49YcyCGBATzePkv'
+import os
+try:
+    quandl.ApiConfig.api_key = os.environ["QUANDL_KEY"]
+except:
+    print("quandl key not defined")
+    print("Failing as loudly as possible")
+    print("DEFINE QUANDL_KEY BEFORE RERUNNING")
+    raise
 
 # Index page, no args
 @app.route('/', methods=['GET','POST'])
@@ -78,17 +83,29 @@ def index():
     if(script != ""):
       return(render_template("index.html",\
                              form=form,\
+                             oClose=options[0],\
+                             oAdjClose=options[1],\
+                             oOpen=options[2],\
+                             oAdjOpen=options[3],\
                              options=options,\
                              script=script,\
                              div=div))
     else:
       return(render_template("index.html",\
                              form=form,\
+                             oClose=options[0],\
+                             oAdjClose=options[1],\
+                             oOpen=options[2],\
+                             oAdjOpen=options[3],\
                              options=options,\
                              status="Symbol not found"))
   else:
     return(render_template("index.html",\
                            form=form,\
+                           oClose=True,\
+                           oAdjClose=False,\
+                           oOpen=False,\
+                           oAdjOpen=False,\
                            status=""))
   return("OK")
 
@@ -98,4 +115,3 @@ def about():
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
-#  app.run(port=33507)
