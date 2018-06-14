@@ -29,40 +29,43 @@
           <h2>Enter stock symbol; hit submit; get a graph</h2>
           <ul>
 	    <p><form method=post action="">
-		Enter stock symbol: {{ form.stockSymbol }}</br>
-		<font color="red">{{ status }}</font></br>		
+		Enter stock symbol: {{ form.stockSymbol }} &nbsp&nbsp&nbsp&nbsp <input type="submit" value="Submit"><br>
+		<a href="https://github.com/jonathan-lai-the-science-guy/tdi-12day-jlai.git">Github code here</a><br>
+		<font color="red">{{ status }}</font><br>		
+
 		Closing price
 		{% if oClose %}
-		<input type="checkbox" name="plotOptions" value="close" checked></br>
+		<input type="checkbox" name="plotOptions" value="close" checked><br>
 		{% else %}
-		<input type="checkbox" name="plotOptions" value="close"></br>
-		{% endif %}
-		Adjusted closing price
-		{% if oAdjClose %}
-		<input type="checkbox" name="plotOptions" value="adj_close" checked></br>
-		{% else %}
-		<input type="checkbox" name="plotOptions" value="adj_close"></br>
-		{% endif %}
-		Opening price
-		{% if oOpen %}
-		<input type="checkbox" name="plotOptions" value="open" checked></br>
-		{% else %}
-		<input type="checkbox" name="plotOptions" value="open"></br>
-		{% endif %}
-		Adjusted opening price
-		{% if oAdjOpen %}
-		<input type="checkbox" name="plotOptions" value="adj_open" checked></br>
-		{% else %}
-		<input type="checkbox" name="plotOptions" value="adj_open"></br>
+		<input type="checkbox" name="plotOptions" value="close"><br>
 		{% endif %}
 
-	    </br><input type="submit" value="Submit">
-	    </form></br>
+		Adjusted closing price
+		{% if oAdjClose %}
+		<input type="checkbox" name="plotOptions" value="adj_close" checked><br>
+		{% else %}
+		<input type="checkbox" name="plotOptions" value="adj_close"><br>
+		{% endif %}
+
+		Opening price
+		{% if oOpen %}
+		<input type="checkbox" name="plotOptions" value="open" checked><br>
+		{% else %}
+		<input type="checkbox" name="plotOptions" value="open"><br>
+		{% endif %}
+
+		Adjusted opening price
+		{% if oAdjOpen %}
+		<input type="checkbox" name="plotOptions" value="adj_open" checked><br>
+		{% else %}
+		<input type="checkbox" name="plotOptions" value="adj_open"><br>
+		{% endif %}
+
+	    </form><br>
           </ul>
 	  {% if script %}
 	    {{ script | safe }}
 	    {{ div | safe }}
-	  <!--<img src="data:image/png;base64,{{ result }}" />-->
 	  {% endif %}
         </div>
       </div>
