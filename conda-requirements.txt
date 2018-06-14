@@ -1,5 +1,7 @@
 pandas
 bokeh
+wtforms
+quandl
 dill
 flask
 jinja2
